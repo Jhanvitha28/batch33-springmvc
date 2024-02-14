@@ -1,5 +1,6 @@
 package com.java.cis;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.Locale;
 import org.springframework.stereotype.Controller;
@@ -26,11 +27,10 @@ public class BMIController {
                          Model model) {
         double bmi = weightInPounds / (heightInInches * heightInInches) * 703;
         model.addAttribute("bmi", bmi);
+        DecimalFormat df = new DecimalFormat("#.##");
+        double roundedBmi = Double.parseDouble(df.format(bmi));
+
+        model.addAttribute("bmi", roundedBmi);
         return "result";
     }
 }
-
-
-// Dispatcher Servlet
-// View Resolver
-// mvc
